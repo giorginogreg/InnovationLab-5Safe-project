@@ -1,0 +1,6 @@
+
+
+.PHONY:format
+
+format:
+  poetry run black --exclude=.venv --line-length=79 --target-version=py39 **/*.pyx
