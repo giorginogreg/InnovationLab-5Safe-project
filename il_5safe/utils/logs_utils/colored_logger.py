@@ -2,8 +2,8 @@ import logging
 from config import CUSTOM_LEVELS
 
 
-PROJECT_NAME_COLOR = '\033[32m'
-FILENAME_COLOR = '\033[36m'
+PROJECT_NAME_COLOR = "\033[32m"
+FILENAME_COLOR = "\033[36m"
 
 """
 CUSTOM_LEVELS: dict
@@ -11,8 +11,8 @@ CUSTOM_LEVELS: dict
 """
 
 for level_name, level_dict in CUSTOM_LEVELS.items():
-    level_value = level_dict['value']
-    level_color = level_dict['color']
+    level_value = level_dict["value"]
+    level_color = level_dict["color"]
     logging.addLevelName(level_value, level_name)
 
     def custom_log(self, message, *args, **kwargs):
@@ -31,11 +31,12 @@ for level_name, level_dict in CUSTOM_LEVELS.items():
             Additional keyword arguments to be passed to the logger.
         """
         message = f"{PROJECT_NAME_COLOR}{self.project_name}{logging.getLevelName(self.level)}{FILENAME_COLOR}{self.filename}{message}"
-        message += '\033[0m'
+        message += "\033[0m"
         self.log(level_value, message, *args, **kwargs)
 
     logging.Logger.makeRecord = custom_log
     logging.addLevelName(level_value, level_name)
+
 
 class ColoredLogger(logging.Logger):
     """
