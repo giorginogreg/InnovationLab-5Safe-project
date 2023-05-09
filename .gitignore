@@ -1,2 +1,8 @@
 build/
 dist
+.github
+.idea
+.vscode
+.benchmarks
+.pytest_cache
+logs
