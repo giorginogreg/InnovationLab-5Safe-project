@@ -21,5 +21,4 @@ log_format: logging.Formatter
 """
 
 file_handler.setFormatter(log_format)
-
 logger.addHandler(file_handler)
