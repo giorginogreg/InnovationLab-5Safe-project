@@ -6,3 +6,7 @@ dist
 .benchmarks
 .pytest_cache
 logs
+*.avi
+runs
+venv
+*.pt
