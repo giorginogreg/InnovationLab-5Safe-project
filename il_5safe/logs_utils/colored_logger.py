@@ -3,7 +3,8 @@ import logging
 import coloredlogs
 import time
 
-def setup_logger(log_directory='./logs'):
+
+def setup_logger(log_directory="./logs"):
     # Create the logs directory if it doesn't exist
     os.makedirs(log_directory, exist_ok=True)
 
@@ -12,7 +13,9 @@ def setup_logger(log_directory='./logs'):
     logger.setLevel(logging.DEBUG)
 
     # Define the log file name with a timestamp
-    log_file = os.path.join(log_directory, f"log_{time.strftime('%Y%m%d_%H%M%S')}.log")
+    log_file = os.path.join(
+        log_directory, f"log_{time.strftime('%Y%m%d_%H%M%S')}.log"
+    )
 
     # Create a file handler for writing logs to a file
     file_handler = logging.FileHandler(log_file)
@@ -36,6 +39,8 @@ def setup_logger(log_directory='./logs'):
     logger.addHandler(console_handler)
 
     # Apply colored logs to the console handler
-    coloredlogs.install(level="INFO", logger=logger, fmt=log_format, datefmt=log_date_format)
+    coloredlogs.install(
+        level="INFO", logger=logger, fmt=log_format, datefmt=log_date_format
+    )
 
     return logger

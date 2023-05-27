@@ -10,3 +10,5 @@ logs
 runs
 venv
 *.pt
+*.jpg
+__pycache__/
