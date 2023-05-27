@@ -40,7 +40,7 @@ def train_model(
     # Initialize COCO evaluator
     coco_gt = COCO(annotation_file="./resources/annotations/training.json")
     evaluator = COCOeval(coco_gt)
-
+    logger.info("Initialized evaluator")
     best_epoch = -1
     best_map = -1
 
@@ -61,14 +61,14 @@ def train_model(
         if (epoch + 1) % 5 == 0:
             checkpoint_path = f"checkpoint_epoch_{epoch+1}.pth"
             torch.save(model.state_dict(), checkpoint_path)
-            print(f"Saved checkpoint: {checkpoint_path}")
+            logger.info(f"Saved checkpoint: {checkpoint_path}")
 
         # Check if current epoch has the best mAP
         if evaluator.stats[0] > best_map:
             best_epoch = epoch + 1
             best_map = evaluator.stats[0]
 
-    print(f"Best epoch: {best_epoch}, Best mAP: {best_map}")
+    logger.info(f"Best epoch: {best_epoch}, Best mAP: {best_map}")
 
     writer.close()
 
@@ -95,13 +95,31 @@ def train_one_epoch(
     """
     model.train()
     epoch_loss = 0.0
-    logger.info(list(dataloader))
-    exit()
     for images, targets in dataloader:
-        logger.info(images)
-        images = images.to(device)
-        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+            # Convert targets to the required format
+        converted_targets = []
+        counter = 0
+        logger.info(f"before conversion {len(targets)}")
+        for target in targets:
+            counter+=1
+            logger.info(counter)
+            bbox = target[0]['bbox']  # Get the bounding box coordinates [x, y, width, height]
+            logger.info(bbox)
+            x1, y1 = bbox[0], bbox[1]
+            x2, y2 =  bbox[2], bbox[3]
+            label = target[0]['category_id']
+            logger.info(torch.tensor([[x1, y1, x2, y2]]))
 
+            converted_target = {
+            'boxes': torch.tensor([[x1, y1, x2, y2]], dtype=torch.float),  
+            'labels': torch.tensor([label], dtype=torch.int64),
+        }
+
+            converted_targets.append(converted_target)
+
+        # Move images and converted targets to the device
+        targets = converted_targets
+        logger.info(f"targets converted {len(converted_targets)}")
         optimizer.zero_grad()
         outputs = model(images, targets)
         loss = sum(loss for loss in outputs.values())
@@ -110,7 +128,7 @@ def train_one_epoch(
 
         epoch_loss += loss.item()
 
-    print(
+    logger.info(
         f"Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss/len(dataloader):.4f}"
     )
 

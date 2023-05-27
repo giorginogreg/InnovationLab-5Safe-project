@@ -7,7 +7,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Dataset preparation
 transform = transforms.Compose([
-    transforms.Resize((480, 640)),
+
     transforms.ToTensor(),
 ])
 train_dataset = datasets.CocoDetection(
