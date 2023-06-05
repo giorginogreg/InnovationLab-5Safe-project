@@ -7,7 +7,7 @@
     - process_video.py: This file contains the core logic for processing the video. It defines the process_video function, which takes the video path, YOLOv5 model, and output data directory as arguments. The function reads each frame of the video, performs object detection using the YOLOv5 model, filters the detected objects to include only bikes and pedestrians, and saves the filtered results as numpy arrays in the output data directory.
     the labeled images are saved then in `./run`
 
-#### order_predictions.py
+#### order_frames.py
 This file is responsible to order the rows in the predicted files obtained after the run of the script predict.py in the YoloV5 Model  
 The rows in the files will be overwritten, and them will be sorted in the following order:
 - first of all, they will be sorted by the first column (class)
@@ -15,7 +15,7 @@ The rows in the files will be overwritten, and them will be sorted in the follow
 
 This will be useful for comparing the boxes detected by the script (detect.py from yolo) and the annotation labels that we did manually
 
-##### Usage: `poetry run python order_predictions.py [path] `  
+##### Usage: `poetry run python order_frames.py [path] `  
 where the [path] parameter will be the absolute path to the folder containing all the txt files to sort
 
 

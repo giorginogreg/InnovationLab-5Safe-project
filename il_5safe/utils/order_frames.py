@@ -24,7 +24,7 @@ def sort_txt_files(folder_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python order_predictions.py folder_path")
+        print("Usage: python order_frames.py folder_path")
     else:
         folder_path = sys.argv[1]
         sort_txt_files(folder_path)
