@@ -42,4 +42,6 @@ def test_setup_logger(temp_logs_directory: str):
     assert isinstance(logger.handlers[1].formatter, logging.Formatter)
 
     # Test if the log directory exists
-    assert os.path.exists(temp_logs_directory) and os.path.isdir(temp_logs_directory)
+    assert os.path.exists(temp_logs_directory) and os.path.isdir(
+        temp_logs_directory
+    )

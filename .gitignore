@@ -10,3 +10,4 @@ logs
 runs
 venv
 *.pt
+__pycache__/
