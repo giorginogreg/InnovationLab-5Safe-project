@@ -2,16 +2,8 @@ build/
 dist
 .github
 .idea
-.vscode
-.benchmarks
-.pytest_cache
-logs
-*.avi
-runs
-venv
-*.pt
-__pycache__/
 # Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
 *$py.class
 
