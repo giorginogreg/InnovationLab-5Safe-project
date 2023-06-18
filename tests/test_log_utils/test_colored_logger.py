@@ -4,7 +4,7 @@ import pytest
 import os
 from typing import Generator
 
-from il_5safe.logs_utils.colored_logger import setup_logger
+from il_5safe.utils.logs_utils.colored_logger import setup_logger
 
 
 @pytest.fixture
