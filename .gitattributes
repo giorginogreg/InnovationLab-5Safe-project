@@ -3002,4 +3002,5 @@ il_5safe/resources/images/training/frame_001778.jpg filter=lfs diff=lfs merge=lf
 il_5safe/resources/images/training/frame_002123.jpg filter=lfs diff=lfs merge=lfs -text
 il_5safe/resources/images/training/frame_002202.jpg filter=lfs diff=lfs merge=lfs -text
 il_5safe/resources/images/training/frame_002578.jpg filter=lfs diff=lfs merge=lfs -text
+il_5safe/resources/**/* filter=lfs diff=lfs merge=lfs -text
 . !text !filter !merge !diff
