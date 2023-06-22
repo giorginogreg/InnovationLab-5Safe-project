@@ -1,3 +1,6 @@
 [submodule "il_5safe/models/yolov5"]
 	path = il_5safe/models/yolov5
 	url = https://github.com/ultralytics/yolov5
+[submodule "il_5safe/models/FasterRCNN"]
+	path = il_5safe/models/FasterRCNN
+	url = https://github.com/johschmidt42/PyTorch-Object-Detection-Faster-RCNN-Tutorial.git
