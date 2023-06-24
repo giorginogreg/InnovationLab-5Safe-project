@@ -1,0 +1,24 @@
+FROM node:16.17.1-alpine as build-stage
+
+WORKDIR /app
+
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
+
+# ENV PATH /app/node_modules/.bin:$PATH
+
+# install project dependencies
+RUN npm cache clean --force && npm install
+
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY . .
+
+RUN npm run build -- --mode staging
+
+# production stage
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY .docker/nginx.conf /etc/nginx/conf.d/nginx.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -19,8 +19,6 @@ RUN python3 -m venv $POETRY_VENV \
     && $POETRY_VENV/bin/pip install -U pip setuptools \
     && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
 
-RUN apt-get update && apt-get install -y python3-tk
-
 WORKDIR /app
 
 #COPY requirements.txt requirements.txt
@@ -31,4 +29,4 @@ COPY . .
 RUN $POETRY_VENV/bin/poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
 #CMD ["/bin/sh"]
-CMD ["/opt/poetry-venv/bin/poetry", "run", "python", "il_5safe/gui/RunGUI.py" ]
+CMD ["/opt/poetry-venv/bin/poetry", "run", "python", "il_5safe/server.py" ]
