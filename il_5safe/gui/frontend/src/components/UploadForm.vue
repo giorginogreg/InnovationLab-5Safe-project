@@ -3,14 +3,19 @@
     <h2>Upload an image</h2>
     <input type="file" @change="uploadImage">
     <button @click="predict">Predict</button>
+      <ResultView :result-url="urlImage"></ResultView>
   </div>
 </template>
 
 <script>
+import ResultView from "@/components/ResultView.vue";
+
 export default {
+    components: {ResultView},
   data() {
     return {
-      selectedImage: null
+      selectedImage: null,
+        urlImage: '',
     }
   },
   methods: {
@@ -29,6 +34,7 @@ export default {
         .then(response => {
           // Mostra il risultato
           console.log(response.data.result)
+            this.urlImage = 'http://localhost:5000' + response.data.result + '?t=' + Date.now()
         })
         .catch(error => {
           console.error(error)
