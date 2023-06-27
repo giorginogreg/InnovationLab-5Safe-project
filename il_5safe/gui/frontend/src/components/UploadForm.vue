@@ -26,7 +26,7 @@ export default {
       let formData = new FormData()
       formData.append('image', this.selectedImage)
 
-      this.$http.post('http://localhost:5000/api/predict', formData, {
+      this.$http.post('/api/predict', formData, {
           headers: {
               'Access-Control-Allow-Origin': '*',
           }
@@ -34,7 +34,7 @@ export default {
         .then(response => {
           // Mostra il risultato
           console.log(response.data.result)
-            this.urlImage = 'http://localhost:5000' + response.data.result + '?t=' + Date.now()
+            this.urlImage = '/static' + response.data.result + '?t=' + Date.now()
         })
         .catch(error => {
           console.error(error)
