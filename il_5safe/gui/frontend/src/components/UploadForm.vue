@@ -34,7 +34,7 @@ export default {
         .then(response => {
           // Mostra il risultato
           console.log(response.data.result)
-            this.urlImage = '/static' + response.data.result + '?t=' + Date.now()
+            this.urlImage = response.data.result + '?t=' + Date.now()
         })
         .catch(error => {
           console.error(error)
