@@ -32,7 +32,8 @@ RUN $POETRY_VENV/bin/pip install -r requirements.txt
 
 ADD . /app
 
+RUN apt-get update && apt-get install libgl1 libglib2.0-0 git -y
+
 #RUN $POETRY_VENV/bin/poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
-#CMD ["/bin/sh"]
 CMD ["/opt/poetry-venv/bin/python", "il_5safe/server.py" ]
