@@ -1,4 +1,5 @@
-il_5safe/resources
+il_5safe/resources/*
+!il_5safe/resources/weights/yolov5
 models/PyTorch*
 il_5safe/models/FasterRCNN
 Archive/

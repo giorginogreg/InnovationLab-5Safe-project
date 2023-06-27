@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import subprocess
 from flask_cors import CORS
+import os
 
 app = Flask(__name__,
             static_folder='models/yolov5/runs/detect/',
@@ -12,6 +13,13 @@ CORS(app)
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
+
+    directory = "/app/upload"
+
+    # Check if the directory exists
+    if not os.path.exists(directory):
+        os.makedirs(directory) # If it doesn't exist, create it
+
     image_file = request.files['image']
     image_path = '/app/upload/uploaded_image.jpg'
     image_file.save(image_path)
@@ -19,10 +27,9 @@ def predict():
     subprocess.call(
         [
             '/opt/poetry-venv/bin/python', 'models/yolov5/detect.py',
+            '--weights', 'resources/weights/yolov5/best_model.pt',
             '--source', image_path,
-            '--name', 'uploaded_image',
-            '--weights', 'il_5safe/resources/weights/yolov5/best_model.pt'
-            '--exist-ok'
+            '--name', 'uploaded_image', '--exist-ok'
          ],
         cwd='/app/il_5safe',
     )
