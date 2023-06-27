@@ -1,21 +1,25 @@
 services:
   backend:
     container_name: innovationslabor_5safe_be
-    image: giorginogreg/il_5safe_be
-    #build:
-    #  context: .docker
-    #  Dockerfile: Dockerfile_backend
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
+    #image: giorginogreg/il_5safe_be
+    build:
+      context: .
+      dockerfile: Dockerfile_backend
+    #volumes:
+    #  - /tmp/.X11-unix:/tmp/.X11-unix
     #  restart: always
-    network_mode: "host"
-    environment:
-      DISPLAY: "host.docker.internal:0"
+    #network_mode: "host"
+    #environment:
+    #  DISPLAY: "host.docker.internal:0"
+    ports:
+      - 5000:5000
   frontend:
     container_name: innovationslabor_5safe_fe
-    image: giorginogreg/il_5safe_fe
-    #build:
-    #  context: .docker
-    #  Dockerfile: Dockerfile_frontend
-    #  restart: always
+    #image: giorginogreg/il_5safe_fe
+    build:
+      context: .
+      dockerfile: Dockerfile_frontend
+    restart: always
+    ports:
+      - 8080:80
     #environment:

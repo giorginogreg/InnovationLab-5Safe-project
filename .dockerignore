@@ -1,7 +1,9 @@
 il_5safe/resources
 models/PyTorch*
+il_5safe/models/FasterRCNN
 Archive/
 .git
 .vscode
 .gitignore
 Makefile
+gui/frontend/node_modules
