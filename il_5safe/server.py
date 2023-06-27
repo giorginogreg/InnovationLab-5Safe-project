@@ -8,7 +8,6 @@ app = Flask(__name__,
             )
 CORS(app)
 
-
 @app.route('/api/predict', methods=['POST'])
 def predict():
     # Salva l'immagine caricata
@@ -17,12 +16,12 @@ def predict():
     image_file.save(image_path)
 
     # Esegui lo script di rilevamento degli oggetti
-    subprocess.call(['python', 'models/yolov5/detect.py', '--source', image_path, '--name', 'uploaded_image', '--exist-ok'])
+    subprocess.call(
+        ['python', 'models/yolov5/detect.py', '--source', image_path, '--name', 'uploaded_image', '--exist-ok'])
 
     # Restituisci il risultato
     result_file = '/uploaded_image/' + image_path
     return jsonify({'result': result_file})
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
