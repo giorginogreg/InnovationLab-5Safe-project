@@ -15,29 +15,23 @@ CORS(app)
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
-    directory = "/app/upload"
-
-    # Check if the directory exists
-    if not os.path.exists(directory):
-        os.makedirs(directory)  # If it doesn't exist, create it
 
     image_file = request.files['image']
-    image_path = '/upload/uploaded_image.jpg'
-    image_file.save(image_path)
+    image_path = 'uploaded_image.jpg'
+    image_file.save('il_5safe/' + image_path)
 
     subprocess.call(
         [
             '/opt/poetry-venv/bin/python', 'models/yolov5/detect.py',
             '--weights', 'resources/weights/yolov5/best_model.pt',
-            '--source', '/app' + image_path,
+            '--source', image_path,
             '--name', 'uploaded_image', '--exist-ok'
         ],
         cwd='/app/il_5safe',
     )
 
     result_file = image_path
-    return jsonify({'result': result_file})
-
+    return jsonify({'result': 'uploaded_image/' + result_file})
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

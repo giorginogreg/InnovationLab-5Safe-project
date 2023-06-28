@@ -1,10 +1,13 @@
 services:
   backend:
     container_name: innovationslabor_5safe_be
-    #image: giorginogreg/il_5safe_be
+    #image: giorginogreg/innovationlab-5safe-be:v1
     build:
       context: .
       dockerfile: Dockerfile_backend
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
     #volumes:
     #  - /tmp/.X11-unix:/tmp/.X11-unix
     #  restart: always
@@ -15,10 +18,13 @@ services:
       - 5000:5000
   frontend:
     container_name: innovationslabor_5safe_fe
-    #image: giorginogreg/il_5safe_fe
+    #image: giorginogreg/innovationlab-5safe-fe:v2
     build:
       context: .
       dockerfile: Dockerfile_frontend
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
     restart: always
     ports:
       - 8080:80
