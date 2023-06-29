@@ -5,17 +5,11 @@ import axios from 'axios'
 
 // Vuetify
 import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
 import VueAxios from 'vue-axios'
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-const vuetify = createVuetify({
-  components,
-  directives,
-})
+
+import vuetify from '@/plugins/vuetify'
 
 const app = createApp(App)
 
