@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
+  <v-container>
+
+      <h1 class="text-center pa-4"> 5 Safe - Prediction PoC</h1>
     <router-view/>
-  </div>
+  </v-container>
 </template>
 
 <script>
