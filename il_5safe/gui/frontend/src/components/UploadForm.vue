@@ -1,13 +1,22 @@
 <template>
   <div>
-    <h2>Upload an image</h2>
+      <v-select
+        label="Select a model"
+        v-model="selectedModel"
+        :items="selectOptions"
+      >
+          <template v-slot:item="{ item, props }">
+            <v-list-item v-bind="props" :disabled="item.raw.disabled" />
+          </template>
+      </v-select>
+      <h2>Upload an image</h2>
     <input type="file" @change="uploadImage">
-    <button @click="predict">Predict</button>
+    <button @click="predict" :disabled="selectedModel === ''">Predict</button>
       <ResultView :result-url="urlImage"></ResultView>
   </div>
 </template>
 
-<script>
+<script >
 import ResultView from "@/components/ResultView.vue";
 
 export default {
@@ -15,7 +24,12 @@ export default {
   data() {
     return {
       selectedImage: null,
-        urlImage: '',
+      selectedModel: '',
+      urlImage: '',
+      selectOptions: [
+        {'title':'YoloV5', 'value': 'yolov5', disabled: false},
+        {'title':'FasterRCNN', 'value': 'fasterrcnn', disabled: true}
+      ],
     }
   },
   methods: {
