@@ -3,4 +3,4 @@
 	url = https://github.com/ultralytics/yolov5
 [submodule "il_5safe/models/FasterRCNN"]
 	path = il_5safe/models/FasterRCNN
-	url = https://github.com/johschmidt42/PyTorch-Object-Detection-Faster-RCNN-Tutorial
+	url = https://github.com/s-ggiorg/PyTorch-Object-Detection-Faster-RCNN-Tutorial
