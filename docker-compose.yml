@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: innovationslabor_5safe_be
-    image: giorginogreg/innovationlab-5safe-be:v1
+    image: giorginogreg/innovationlab-5safe-be:latest
     build:
       context: .
       dockerfile: Dockerfile_backend
@@ -17,7 +17,7 @@ services:
       - 5000:5000
   frontend:
     container_name: innovationslabor_5safe_fe
-    image: giorginogreg/innovationlab-5safe-fe:v11
+    image: giorginogreg/innovationlab-5safe-fe:latest
     build:
       context: .
       dockerfile: Dockerfile_frontend
