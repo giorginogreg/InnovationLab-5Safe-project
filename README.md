@@ -4,6 +4,8 @@
 
 Clone the repository with the command `git clone --recursive -j8 [url]`, because it contains submodules used in the repo
 
+Or if the repo was already cloned, run `git submodule update --init`
+
 Before running the scripts, make sure you have the following dependencies installed in the `requirements.txt`
 or you can run `poetry install` to install them using `pypoetry`
 
@@ -42,6 +44,8 @@ before the build
 ### How to build the images
 Execute the command `sudo docker-compose build --no-cache`.
 
+For the multiplatform build: `docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile_backend --push --tag giorginogreg/innovationlab-5safe-be:latest .`
+
 Then execute the command ``sudo docker-compose up -d``
 
 --- 
@@ -51,3 +55,6 @@ Then execute the command ``sudo docker-compose up -d``
 After the build / docker-compose up command is executed successfully, you can open the frontend interface in the browser via the link `http://localhost:8080`
 
 Then, the interface will explain you the steps to execute, for example uploading an image and then clicking the prediction button after the model selection
+
+
+Test command: /opt/poetry-venv/bin/python models/yolov5/detect.py --weights resources/weights/yolov5/best_model.pt --source uploaded_image.jpg --name uploaded_image --exist-ok
